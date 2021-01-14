@@ -11,4 +11,4 @@ services:
       - .:/usr/pinky/
       - /usr/pinky/node_modules
     working_dir: /usr/pinky/
-    command: npm run run-server
+    command: yarn prod

@@ -11,7 +11,7 @@
     "tsc": "tsc -w",
     "build": "tsc",
     "dev": "nodemon",
-    "prod": "yarn build && node build/bot.js"
+    "prod": "yarn install && yarn build && node build/bot.js"
   },
   "dependencies": {
     "@types/bad-words": "^3.0.0",
