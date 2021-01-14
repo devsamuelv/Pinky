@@ -1,0 +1,14 @@
+{
+  "name": "Pinky",
+  "version": "1.0.0",
+  "description": "Pink Team Discord Bot",
+  "main": "build/bot.js",
+  "repository": "https://github.com/DevSamuelV/Pinky",
+  "author": "DevSamuelV",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "nodemon": "^2.0.7"
+  }
+}
