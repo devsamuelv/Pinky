@@ -7,8 +7,20 @@
   "author": "DevSamuelV",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "tsc": "tsc -w",
+    "build": "tsc",
+    "dev": "nodemon",
+    "prod": "yarn build && node build/bot.js"
+  },
   "dependencies": {
+    "@types/bad-words": "^3.0.0",
+    "bad-words": "^3.0.4",
     "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.20",
     "nodemon": "^2.0.7"
   }
 }

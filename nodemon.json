@@ -1,0 +1,5 @@
+{
+  "signal": "SIGUSR2",
+  "ext": "js",
+  "exec": "node build/bot.js"
+}

@@ -1,0 +1,14 @@
+version: "2"
+services:
+  app:
+    container_name: pinky
+    env_file: .env
+    ports:
+      - "8448:8448"
+    image: node:erbium-alpine
+    restart: "always"
+    volumes:
+      - .:/usr/pinky/
+      - /usr/pinky/node_modules
+    working_dir: /usr/pinky/
+    command: npm run run-server
