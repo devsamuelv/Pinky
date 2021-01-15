@@ -6,8 +6,6 @@ name: Deploy
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
   build:
@@ -16,10 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          path: "pinky"
+          path: ${{ $GITHUB_WORKSPACE }}
       - uses: SpicyPizza/create-envfile@v1
         with:
-          directory: "pinky"
+          directory: ${{ $GITHUB_WORKSPACE }}
           envkey_TOKEN: ${{ secrets.TOKEN }}
           file_name: .env
       - run: docker-compose up -d
