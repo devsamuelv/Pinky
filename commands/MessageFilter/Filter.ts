@@ -15,9 +15,10 @@ export class MessageFilter {
 
       var count: number = 0;
 
-      if (author == "Pinky") return;
+      if (author == "Pinky" || author == "Pinky Dev") return;
 
       if (content.includes("#addword")) return;
+      if (content.includes("#deleteword")) return;
 
       if (MessageFilter.filter.isProfane(content)) {
         const file = JSON.parse(Json.Read(".config.json").toString());

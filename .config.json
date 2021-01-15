@@ -10,9 +10,9 @@
     "fuq",
     "retat",
     "retarded",
-    "dumbass"
+    "dumbass",
+    "fricking"
   ],
-  "cool": "noce",
   "users": [
     { "username": "Developer", "word": "dumbass" },
     { "username": "Developer", "word": "dumbass" },
@@ -23,11 +23,6 @@
     { "username": "Developer", "word": "dumbass" },
     { "username": "Developer", "word": "shit" },
     { "username": "Developer", "word": "shit" },
-    { "username": "Developer", "word": "shit" },
-    { "username": "Developer", "word": "test" },
-    {
-      "username": "Developer",
-      "word": "tooooooooooooooooooooooooooooooooooooo"
-    }
+    { "username": "Developer", "word": "shit" }
   ]
 }
