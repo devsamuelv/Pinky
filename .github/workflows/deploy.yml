@@ -21,7 +21,7 @@ jobs:
     # echo ${{ secrets.password }} | sudo -S
 
     steps:
-      - run: ls
+      - uses: actions/checkout@v2
       - run: docker-compose bundle
       - run: docker deploy pinky.dab
       # NPM
