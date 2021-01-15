@@ -19,8 +19,9 @@ jobs:
     # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - run: echo ${{ secrets.PASS }} | sudo -S docker-compose bundle
-      - run: echo ${{ secrets.PASS }} | sudo -S docker deploy pinky.dab
+      - run: echo ${{ secrets.PASSWORD }}
+      # - run: echo ${{ secrets.PASS }} | sudo -S docker-compose bundle
+      # - run: echo ${{ secrets.PASS }} | sudo -S docker deploy pinky.dab
       # NPM
       # - uses: actions/checkout@v2
       # - name: Use Node.js ${{ matrix.node-version }}
