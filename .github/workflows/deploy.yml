@@ -20,6 +20,8 @@ jobs:
           file_name: .env
       - run: docker-compose kill
       - uses: actions/checkout@v2
+          with: 
+            path: "pinky"
 
       - uses: SpicyPizza/create-envfile@v1
         with:
