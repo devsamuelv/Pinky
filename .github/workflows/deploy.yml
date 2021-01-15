@@ -30,7 +30,6 @@ jobs:
           # directory: <directory_name>
           file_name: .env
 
-      - run: docker-compose kill
       - run: docker-compose up -d
       # NPM
       # - uses: actions/checkout@v2
