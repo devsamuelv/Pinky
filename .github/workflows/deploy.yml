@@ -30,8 +30,8 @@ jobs:
           # directory: <directory_name>
           file_name: .env
 
-      - run: docker-compose bundle
-      - run: docker deploy pinky.dab
+      - run: docker-compose kill
+      - run: docker-compose up -d
       # NPM
       # - uses: actions/checkout@v2
       # - name: Use Node.js ${{ matrix.node-version }}
