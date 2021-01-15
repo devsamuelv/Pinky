@@ -19,7 +19,7 @@ jobs:
           envkey_TOKEN: ${{ secrets.TOKEN }}
           file_name: .env
       - run: docker-compose kill
-      - run: mk .config.json
+      - run: touch .config.json
       - uses: SpicyPizza/create-envfile@v1
         with:
           envkey_TOKEN: ${{ secrets.TOKEN }}
