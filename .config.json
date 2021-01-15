@@ -1,1 +1,33 @@
-{"words":["assman","r3tard","fck","gay","titty","fuuck","shiit","fuq","retat","retarded","dumbass"],"cool":"noce","users":[{"username":"Developer","word":"dumbass"},{"username":"Developer","word":"dumbass"},{"username":"Developer","word":"dumbass"},{"username":"Developer","word":"dumbass"},{"username":"Developer","word":"dumbass"},{"username":"Developer","word":"dumbass"},{"username":"Developer","word":"dumbass"}]}
+{
+  "words": [
+    "assman",
+    "r3tard",
+    "fck",
+    "gay",
+    "titty",
+    "fuuck",
+    "shiit",
+    "fuq",
+    "retat",
+    "retarded",
+    "dumbass"
+  ],
+  "cool": "noce",
+  "users": [
+    { "username": "Developer", "word": "dumbass" },
+    { "username": "Developer", "word": "dumbass" },
+    { "username": "Developer", "word": "dumbass" },
+    { "username": "Developer", "word": "dumbass" },
+    { "username": "Developer", "word": "dumbass" },
+    { "username": "Developer", "word": "dumbass" },
+    { "username": "Developer", "word": "dumbass" },
+    { "username": "Developer", "word": "shit" },
+    { "username": "Developer", "word": "shit" },
+    { "username": "Developer", "word": "shit" },
+    { "username": "Developer", "word": "test" },
+    {
+      "username": "Developer",
+      "word": "tooooooooooooooooooooooooooooooooooooo"
+    }
+  ]
+}

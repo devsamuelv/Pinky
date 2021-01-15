@@ -13,36 +13,12 @@ jobs:
   build:
     runs-on: self-hosted
 
-    # strategy:
-    #   matrix:
-    #     node-version: [10.x, 12.x, 14.x, 15.x]
-    # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    # echo ${{ secrets.password }} | sudo -S
-
     steps:
       - uses: actions/checkout@v2
 
       - uses: SpicyPizza/create-envfile@v1
         with:
-          envkey_DEBUG: false
           envkey_TOKEN: ${{ secrets.TOKEN }}
-          # directory: <directory_name>
           file_name: .env
 
       - run: docker-compose up -d
-      # NPM
-      # - uses: actions/checkout@v2
-      # - name: Use Node.js ${{ matrix.node-version }}
-      #   uses: actions/setup-node@v1
-      #   with:
-      #     node-version: ${{ matrix.node-version }}
-
-      # Yarn
-      # - uses: actions/checkout@v2
-      # - uses: borales/actions-yarn@v2.0.0
-      #   with:
-      #     cmd: install
-      # - uses: borales/actions-yarn@v2.0.0
-      #   with:
-      #     cmd: install

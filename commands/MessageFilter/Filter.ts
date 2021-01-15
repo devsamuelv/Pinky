@@ -1,27 +1,14 @@
-import BadWordsFilter from "bad-words";
 import discord from "discord.js";
 import Filter from "bad-words";
 import { Json } from "../../util/Json";
 
 export class MessageFilter {
-  private filter = new Filter({
-    list: [
-      "assman",
-      "r3tard",
-      "fck",
-      "gay",
-      "titty",
-      "fuuck",
-      "shiit",
-      "fuq",
-      "retat",
-      "retarded",
-      "dumbass",
-    ],
-  });
+  public static filter = new Filter();
   private curseCount: { username: string; word: string }[] = [];
 
   constructor(cli: discord.Client) {
+    this.Init();
+
     cli.on("message", (message) => {
       const author = message.author.username;
       const content = message.content;
@@ -30,7 +17,9 @@ export class MessageFilter {
 
       if (author == "Pinky") return;
 
-      if (this.filter.isProfane(content)) {
+      if (content.includes("#addword")) return;
+
+      if (MessageFilter.filter.isProfane(content)) {
         const file = JSON.parse(Json.Read(".config.json").toString());
 
         this.curseCount = file.users;
@@ -41,13 +30,15 @@ export class MessageFilter {
           }
         });
 
-        console.log(count);
-
-        if (count > 5) {
+        if (count > 10) {
+          message.reply(
+            `you know im going to delete your messages anyway :rolling_eyes:`
+          );
+        } else if (count > 5) {
           message.reply(
             `HOW MANY TIMES DO I HAVE TO TELL YOU STOP CURSING!!!!!`
           );
-        } else {
+        } else if (count < 5) {
           message.reply(`stop cursing`);
         }
 
@@ -65,5 +56,11 @@ export class MessageFilter {
         }
       }
     });
+  }
+
+  private Init() {
+    const file = JSON.parse(Json.Read(".config.json").toString());
+
+    file.words.forEach((word: string) => MessageFilter.filter.addWords(word));
   }
 }

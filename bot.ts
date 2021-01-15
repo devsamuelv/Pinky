@@ -1,5 +1,5 @@
 import discord from "discord.js";
-import { MessageFilter } from "./commands/MessageFilter/Filter";
+import { Command } from "./commands/Command";
 
 require("dotenv").config();
 
@@ -14,7 +14,7 @@ const cli = new discord.Client({
   },
 });
 
-new MessageFilter(cli);
+new Command(cli);
 
 if (token == null)
   throw new Error("There is no available token in your enviroment");
