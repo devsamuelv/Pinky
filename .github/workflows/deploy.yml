@@ -9,9 +9,8 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      # - uses: actions/checkout@v2
-      # with:
-      # path: $GITHUB_WORKSPACE
+      - uses: actions/checkout@v2
+      with:
       - uses: SpicyPizza/create-envfile@v1
         with:
           envkey_TOKEN: ${{ secrets.TOKEN }}
