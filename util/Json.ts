@@ -10,4 +10,8 @@ export class Json {
 
     return file;
   }
+
+  static Exists(location: string) {
+    return fs.existsSync(location);
+  }
 }

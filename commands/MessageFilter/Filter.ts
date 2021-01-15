@@ -60,6 +60,16 @@ export class MessageFilter {
   }
 
   private Init() {
+    if (!Json.Exists(".config.json")) {
+      Json.Write(
+        ".config.json",
+        JSON.stringify({
+          words: [],
+          users: [],
+        })
+      );
+    }
+
     const file = JSON.parse(Json.Read(".config.json").toString());
 
     file.words.forEach((word: string) => MessageFilter.filter.addWords(word));
