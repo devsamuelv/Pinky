@@ -3,7 +3,7 @@ import { Json } from "../../util/Json";
 
 export class GetHistory {
   private history: { username: string; word: string }[] = [];
-  private adminRoleId = "681326153969172529";
+  private adminRoleId = "723228470720856167";
   private command = "#gethistory";
 
   constructor(cli: discord.Client) {

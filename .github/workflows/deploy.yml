@@ -14,17 +14,12 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - uses: SpicyPizza/create-envfile@v1
-        with:
-          envkey_TOKEN: ${{ secrets.TOKEN }}
-          file_name: .env
-      - run: docker-compose kill
       - uses: actions/checkout@v2
         with:
           path: "pinky"
-
       - uses: SpicyPizza/create-envfile@v1
         with:
+          directory: "pinky"
           envkey_TOKEN: ${{ secrets.TOKEN }}
           file_name: .env
       - run: docker-compose up -d
