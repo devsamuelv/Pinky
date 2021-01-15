@@ -20,4 +20,10 @@ jobs:
           directory: $GITHUB_WORKSPACE
           envkey_TOKEN: ${{ secrets.TOKEN }}
           file_name: .env
+      - run: docker-compose kill
+      - uses: SpicyPizza/create-envfile@v1
+        with:
+          directory: $GITHUB_WORKSPACE
+          envkey_TOKEN: ${{ secrets.TOKEN }}
+          file_name: .env
       - run: docker-compose up -d
