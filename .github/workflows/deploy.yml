@@ -7,9 +7,13 @@ on:
 jobs:
   build:
     runs-on: self-hosted
+    env:
+      TOKEN: ${{ secrets.TOKEN }}
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          path: "pink"
       - uses: SpicyPizza/create-envfile@v1
         with:
           envkey_TOKEN: ${{ secrets.TOKEN }}
