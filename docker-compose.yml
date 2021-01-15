@@ -2,7 +2,8 @@ version: "2"
 services:
   app:
     container_name: pinky
-    env_file: .env
+    environment:
+      - TOKEN=TOKEN
     ports:
       - "8448:8448"
     image: node:erbium-alpine
