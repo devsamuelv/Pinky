@@ -23,13 +23,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Make envfile
-      uses: SpicyPizza/create-envfile@v1
-      with:
-        envkey_DEBUG: false
-        envkey_TOKEN: ${{ secrets.TOKEN }}
-        # directory: <directory_name>
-        file_name: .env
+      - uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_DEBUG: false
+          envkey_TOKEN: ${{ secrets.TOKEN }}
+          # directory: <directory_name>
+          file_name: .env
 
       - run: docker-compose bundle
       - run: docker deploy pinky.dab
