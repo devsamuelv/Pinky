@@ -12,8 +12,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          path: "pink"
       - uses: SpicyPizza/create-envfile@v1
         with:
           envkey_TOKEN: ${{ secrets.TOKEN }}
