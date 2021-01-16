@@ -12,13 +12,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: SpicyPizza/create-envfile@v1
         with:
           envkey_TOKEN: ${{ secrets.TOKEN }}
           file_name: .env
       - run: echo ${{ secrets.password }} | sudo -S
       - run: docker-compose kill
-      - uses: SpicyPizza/create-envfile@v1
         with:
           envkey_TOKEN: ${{ secrets.TOKEN }}
           file_name: .env
