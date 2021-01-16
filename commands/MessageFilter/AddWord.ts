@@ -6,6 +6,7 @@ export class AddWord {
   private CurseWords: string[] = [];
 
   private modRoleId = "631240392779759628";
+  private adminRoleId = "723228470720856167";
   private command = "#addword";
 
   constructor(cli: discord.Client) {
@@ -25,12 +26,15 @@ export class AddWord {
 
       if (authorRoles?.array().length < 0) {
         authorRoles?.forEach((role) => {
-          if (role.id == this.modRoleId) {
+          if (role.id == this.modRoleId || role.id == this.adminRoleId) {
             this.Addword(word);
             message.reply(`${word} was added to the blocklist`);
           }
         });
-      } else if (authorRoles.first()?.id == this.modRoleId) {
+      } else if (
+        authorRoles.first()?.id == this.modRoleId ||
+        authorRoles.first()?.id == this.adminRoleId
+      ) {
         this.Addword(word);
         message.reply(`${word} was added to the blocklist`);
       }
