@@ -26,8 +26,12 @@ export class AddWord {
 
       if (word.toLowerCase() == "help") return;
 
+      console.log(authorRoles.array());
+
       if (authorRoles?.array().length < 0) {
         authorRoles?.forEach((role) => {
+          console.log(role.id);
+
           if (role.id == this.modRoleId || role.id == this.adminRoleId) {
             this.Addword(word);
             message.reply(`${word} was added to the blocklist`);
