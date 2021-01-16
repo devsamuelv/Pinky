@@ -11,13 +11,13 @@ jobs:
     #   TOKEN: ${{ secrets.TOKEN }}
 
     steps:
-      - run: echo ${{ secrets.PASSWORD }} | sudo -S chgrp -R samuel /home/deploy/actions-runner/working-dir/Pinky/Pinky/build | echo ${{ secrets.PASSWORD }} | sudo -S chmod -R ug+rwX /home/deploy/actions-runner/working-dir/Pinky/Pinky/build | echo ${{ secrets.PASSWORD }} | sudo -S find /home/deploy/actions-runner/working-dir/Pinky/Pinky/build -type d -exec chmod g+s {} +
+      # - run: echo ${{ secrets.PASSWORD }} | sudo -S chgrp -R samuel /home/deploy/actions-runner/working-dir/Pinky/Pinky/build | echo ${{ secrets.PASSWORD }} | sudo -S chmod -R ug+rwX /home/deploy/actions-runner/working-dir/Pinky/Pinky/build | echo ${{ secrets.PASSWORD }} | sudo -S find /home/deploy/actions-runner/working-dir/Pinky/Pinky/build -type d -exec chmod g+s {} +
       - uses: actions/checkout@v2
       - uses: SpicyPizza/create-envfile@v1
         with:
           envkey_TOKEN: ${{ secrets.TOKEN }}
           file_name: .env
-      - run: docker-compose kill
+      - run: echo ${{ secrets.PASSWORD }} | sudo -S docker-compose kill
       - uses: SpicyPizza/create-envfile@v1
         with:
           envkey_TOKEN: ${{ secrets.TOKEN }}
