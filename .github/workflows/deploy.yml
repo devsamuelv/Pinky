@@ -12,6 +12,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: echo ${{ secrets.password }} | sudo -S
+      - run: echo ${{ secrets.password }} | sudo -s
       - run: docker-compose kill
       - run: docker-compose up -d
