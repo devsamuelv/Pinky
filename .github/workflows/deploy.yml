@@ -11,6 +11,7 @@ jobs:
     #   TOKEN: ${{ secrets.TOKEN }}
 
     steps:
+      - run: sudo chgrp -R samuel /home/deploy/actions-runner/working-dir/Pinky/Pinky/build | sudo chmod -R ug+rwX /home/deploy/actions-runner/working-dir/Pinky/Pinky/build | sudo find /home/deploy/actions-runner/working-dir/Pinky/Pinky/build -type d -exec chmod g+s {} +
       - uses: actions/checkout@v2
       - uses: SpicyPizza/create-envfile@v1
         with:
