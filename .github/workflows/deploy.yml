@@ -7,10 +7,18 @@ on:
 jobs:
   build:
     runs-on: self-hosted
-    env:
-      TOKEN: ${{ secrets.TOKEN }}
+    # env:
+    #   TOKEN: ${{ secrets.TOKEN }}
 
     steps:
       - uses: actions/checkout@v2
+      - uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_TOKEN: ${{ secrets.TOKEN }}
+          file_name: .env
       - run: docker-compose kill
+      - uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_TOKEN: ${{ secrets.TOKEN }}
+          file_name: .env
       - run: docker-compose up -d
