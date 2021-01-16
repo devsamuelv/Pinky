@@ -22,4 +22,4 @@ jobs:
         with:
           envkey_TOKEN: ${{ secrets.TOKEN }}
           file_name: .env
-      - run: echo ${{ secrets.PASSWORD }} | sudo docker-compose up -d
+      - run: echo ${{ secrets.PASSWORD }} | sudo -S docker-compose up -d
