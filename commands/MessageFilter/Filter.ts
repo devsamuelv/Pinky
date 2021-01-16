@@ -21,7 +21,7 @@ export class MessageFilter {
       if (content.includes("#deleteword")) return;
 
       if (MessageFilter.filter.isProfane(content)) {
-        const file = JSON.parse(Json.Read(".config.json").toString());
+        const file = JSON.parse(Json.Read("config.json").toString());
 
         this.curseCount = file.users;
 
@@ -50,7 +50,7 @@ export class MessageFilter {
 
         file.users = this.curseCount;
 
-        Json.Write(".config.json", JSON.stringify(file));
+        Json.Write("config.json", JSON.stringify(file));
 
         if (message.deletable) {
           message.delete();
@@ -60,7 +60,7 @@ export class MessageFilter {
   }
 
   private Init() {
-    const file = JSON.parse(Json.Read(".config.json").toString());
+    const file = JSON.parse(Json.Read("config.json").toString());
 
     file.words.forEach((word: string) => MessageFilter.filter.addWords(word));
   }

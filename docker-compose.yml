@@ -8,7 +8,7 @@ services:
     image: node:erbium-alpine
     restart: "always"
     volumes:
-      - .:/usr/pinky/
+      - .:/usr/pinky
       - /usr/pinky/node_modules
-    working_dir: /usr/pinky/
+    working_dir: /usr/pinky
     command: yarn prod

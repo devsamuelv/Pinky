@@ -15,9 +15,9 @@ const cli = new discord.Client({
   },
 });
 
-if (!Json.Exists(".config.json")) {
+if (!Json.Exists("config.json")) {
   Json.Write(
-    ".config.json",
+    "config.json",
     JSON.stringify({
       words: [],
       users: [],

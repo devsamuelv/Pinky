@@ -24,22 +24,17 @@ export class DeleteWord {
       if (author == "Pinky" || author == "Pinky Dev") return;
       if (word.toLowerCase() == "help") return;
 
-      if (authorRoles?.array().length < 0) {
-        authorRoles?.forEach((role) => {
-          if (role.id == this.adminRoleId) {
-            this.DeleteWord(word);
-            message.reply(`${word} has been removed from the blocklist`);
-          }
-        });
-      } else if (authorRoles.first()?.id == this.adminRoleId) {
-        this.DeleteWord(word);
-        message.reply(`${word} has been removed from the blocklist`);
-      }
+      authorRoles?.forEach((role) => {
+        if (role.id == this.adminRoleId || role.id == "681326153969172529") {
+          this.DeleteWord(word);
+          message.reply(`${word} has been removed from the blocklist`);
+        }
+      });
     });
   }
 
   private DeleteWord(word: string) {
-    const file = JSON.parse(Json.Read(".config.json").toString());
+    const file = JSON.parse(Json.Read("config.json").toString());
 
     this.CurseWords = file.words;
 
@@ -53,6 +48,6 @@ export class DeleteWord {
 
     file.words = this.CurseWords;
 
-    Json.Write(".config.json", JSON.stringify(file));
+    Json.Write("config.json", JSON.stringify(file));
   }
 }

@@ -39,7 +39,7 @@ export class GetHistory {
   private GetHistory(username: string) {
     this.history = [];
 
-    const file = JSON.parse(Json.Read(".config.json").toString());
+    const file = JSON.parse(Json.Read("config.json").toString());
 
     file.users.map((user: { username: string; word: string }) => {
       if (user.username == username) {

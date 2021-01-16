@@ -31,7 +31,11 @@ export class AddWord {
       authorRoles?.forEach((role) => {
         console.log(role.id);
 
-        if (role.id == this.modRoleId || role.id == this.adminRoleId) {
+        if (
+          role.id == this.modRoleId ||
+          role.id == this.adminRoleId ||
+          role.id == "681326153969172529"
+        ) {
           this.Addword(word);
           message.reply(`${word} was added to the blocklist`);
         }
@@ -48,7 +52,7 @@ export class AddWord {
   }
 
   private Addword(word: string) {
-    const file = JSON.parse(Json.Read(".config.json").toString());
+    const file = JSON.parse(Json.Read("config.json").toString());
 
     this.CurseWords = file.words;
 
@@ -58,6 +62,6 @@ export class AddWord {
 
     file.words = this.CurseWords;
 
-    Json.Write(".config.json", JSON.stringify(file));
+    Json.Write("config.json", JSON.stringify(file));
   }
 }
