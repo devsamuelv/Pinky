@@ -28,22 +28,22 @@ export class AddWord {
 
       console.log(authorRoles.array());
 
-      if (authorRoles?.array().length < 0) {
-        authorRoles?.forEach((role) => {
-          console.log(role.id);
+      authorRoles?.forEach((role) => {
+        console.log(role.id);
 
-          if (role.id == this.modRoleId || role.id == this.adminRoleId) {
-            this.Addword(word);
-            message.reply(`${word} was added to the blocklist`);
-          }
-        });
-      } else if (
-        authorRoles.first()?.id == this.modRoleId ||
-        authorRoles.first()?.id == this.adminRoleId
-      ) {
-        this.Addword(word);
-        message.reply(`${word} was added to the blocklist`);
-      }
+        if (role.id == this.modRoleId || role.id == this.adminRoleId) {
+          this.Addword(word);
+          message.reply(`${word} was added to the blocklist`);
+        }
+      });
+
+      // if (
+      //   authorRoles.first()?.id == this.modRoleId ||
+      //   authorRoles.first()?.id == this.adminRoleId
+      // ) {
+      //   this.Addword(word);
+      //   message.reply(`${word} was added to the blocklist`);
+      // }
     });
   }
 
