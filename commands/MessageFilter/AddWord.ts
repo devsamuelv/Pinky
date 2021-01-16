@@ -11,6 +11,8 @@ export class AddWord {
 
   constructor(cli: discord.Client) {
     cli.on("message", (message) => {
+      console.log(message.content);
+
       if (!message.toString().includes(this.command)) return;
 
       const content = message.content;
