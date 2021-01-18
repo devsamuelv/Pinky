@@ -24,8 +24,6 @@ export class AddWord {
 
       if (word.toLowerCase() == "help") return;
 
-      console.log(authorRoles.array());
-
       authorRoles?.forEach((role) => {
         if (
           role.id == this.modRoleId ||
