@@ -11,8 +11,6 @@ export class AddWord {
 
   constructor(cli: discord.Client) {
     cli.on("message", (message) => {
-      console.log(message.content);
-
       if (!message.toString().includes(this.command)) return;
 
       const content = message.content;
@@ -29,8 +27,6 @@ export class AddWord {
       console.log(authorRoles.array());
 
       authorRoles?.forEach((role) => {
-        console.log(role.id);
-
         if (
           role.id == this.modRoleId ||
           role.id == this.adminRoleId ||
@@ -40,14 +36,6 @@ export class AddWord {
           message.reply(`${word} was added to the blocklist`);
         }
       });
-
-      // if (
-      //   authorRoles.first()?.id == this.modRoleId ||
-      //   authorRoles.first()?.id == this.adminRoleId
-      // ) {
-      //   this.Addword(word);
-      //   message.reply(`${word} was added to the blocklist`);
-      // }
     });
   }
 

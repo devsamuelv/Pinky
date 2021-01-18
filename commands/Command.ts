@@ -1,5 +1,6 @@
 import discord from "discord.js";
 import { AddWord } from "./MessageFilter/AddWord";
+import { Blocklist } from "./MessageFilter/Blocklist";
 import { DeleteWord } from "./MessageFilter/DeleteWord";
 import { MessageFilter } from "./MessageFilter/Filter";
 import { GetHistory } from "./MessageFilter/GetHistory";
@@ -10,6 +11,7 @@ export class Command {
     new AddWord(cli);
     new DeleteWord(cli);
     new GetHistory(cli);
+    new Blocklist(cli);
     new MessageFilter(cli);
     new MessageHelp(cli);
   }
