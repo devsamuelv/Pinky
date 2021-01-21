@@ -5,6 +5,7 @@ import { MessageFilter } from "./Filter";
 export class DeleteWord {
   private CurseWords: string[] = [];
   private adminRoleId = "723228470720856167";
+  private modRoleId = "631240392779759628";
   private command = "#deleteword";
 
   constructor(cli: discord.Client) {
@@ -25,7 +26,11 @@ export class DeleteWord {
       if (word.toLowerCase() == "help") return;
 
       authorRoles?.forEach((role) => {
-        if (role.id == this.adminRoleId || role.id == "681326153969172529") {
+        if (
+          role.id == this.adminRoleId ||
+          role.id == this.modRoleId ||
+          role.id == "681326153969172529"
+        ) {
           this.DeleteWord(word);
           message.reply(`${word} has been removed from the blocklist`);
         }

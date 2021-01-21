@@ -7,6 +7,9 @@ export class MessageFilter {
   private curseCount: { username: string; word: string }[] = [];
 
   constructor(cli: discord.Client) {
+    // * add proper data santization
+    // * fixed the character issue
+
     this.Init();
 
     cli.on("message", (message) => {
