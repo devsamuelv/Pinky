@@ -2,7 +2,7 @@ import discord from "discord.js";
 import { Json } from "../../util/Json";
 
 export class UnFreeze {
-  private command = "#unfreeze";
+  private command = "#thaw";
   private frozenUsers: string[] = [];
 
   private modRoleId = "631240392779759628";

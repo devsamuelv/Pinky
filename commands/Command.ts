@@ -1,7 +1,7 @@
 import discord from "discord.js";
 import { CooldownFilter } from "./Cooldown/filter";
 import { Freeze } from "./Cooldown/freeze";
-import { UnFreeze } from "./Cooldown/unfreeze";
+import { UnFreeze } from "./Cooldown/thaw";
 import { AddWord } from "./MessageFilter/AddWord";
 import { Blocklist } from "./MessageFilter/Blocklist";
 import { DeleteWord } from "./MessageFilter/DeleteWord";

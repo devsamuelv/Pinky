@@ -32,6 +32,12 @@ export class Freeze {
         ) {
           const file = JSON.parse(Json.Read("config.json").toString());
 
+          if (file.frozenUsers == null) {
+            file.frozenUsers = [];
+
+            Json.Write("config.json", JSON.stringify(file));
+          }
+
           this.frozenUsers = file.frozenUsers;
 
           for (var i = 0; i != this.frozenUsers.length; i++) {
