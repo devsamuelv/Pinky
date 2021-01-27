@@ -14,7 +14,7 @@ export class MessageFilter {
 
     cli.on("message", (message) => {
       const author = message.author.username;
-      const content = message.content;
+      const content = message.content.toLowerCase();
 
       var count: number = 0;
 
