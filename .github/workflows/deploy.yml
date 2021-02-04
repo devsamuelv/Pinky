@@ -17,10 +17,21 @@ jobs:
       - uses: SpicyPizza/create-envfile@v1
         with:
           envkey_TOKEN: ${{ secrets.TOKEN }}
+          envkey_TOKEN: ${{ secrets.DATABASE_URL }}
+          envkey_TOKEN: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          envkey_TOKEN: ${{ secrets.POSTGRES_DB }}
+          envkey_TOKEN: ${{ secrets.POSTGRES_PASSWORD }}
+          envkey_TOKEN: ${{ secrets.POSTGRES_USER }}
           file_name: .env
+      - run: echo ${{ secrets.PASSWORD }} | sudo cp /home/deploy/google_key.json /home/deploy/actions-runner/working-dir/Pinky/Pinky
       - run: echo ${{ secrets.PASSWORD }} | sudo -S docker-compose kill
       - uses: SpicyPizza/create-envfile@v1
         with:
           envkey_TOKEN: ${{ secrets.TOKEN }}
+          envkey_TOKEN: ${{ secrets.DATABASE_URL }}
+          envkey_TOKEN: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          envkey_TOKEN: ${{ secrets.POSTGRES_DB }}
+          envkey_TOKEN: ${{ secrets.POSTGRES_PASSWORD }}
+          envkey_TOKEN: ${{ secrets.POSTGRES_USER }}
           file_name: .env
       - run: docker-compose up -d
