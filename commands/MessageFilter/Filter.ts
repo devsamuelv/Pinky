@@ -102,6 +102,8 @@ export class MessageFilter {
   private async Init() {
     const list = await db.blocklist.Get();
 
+    MessageFilter.filter.removeWords("crap");
+
     list.forEach((l) => MessageFilter.filter.addWords(l.word));
   }
 }
