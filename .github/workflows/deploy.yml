@@ -23,7 +23,7 @@ jobs:
           envkey_POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           envkey_POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
           file_name: .env
-      - run: echo ${{ secrets.PASSWORD }} | sudo cp /home/deploy/google_key.json /home/deploy/actions-runner/working-dir/Pinky/Pinky
+      - run: echo ${{ secrets.PASSWORD }} | sudo -S cp /home/deploy/google_key.json /home/deploy/actions-runner/working-dir/Pinky/Pinky
       - run: echo ${{ secrets.PASSWORD }} | sudo -S docker-compose kill
       - uses: SpicyPizza/create-envfile@v1
         with:
