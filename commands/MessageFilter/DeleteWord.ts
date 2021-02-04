@@ -1,9 +1,8 @@
 import discord from "discord.js";
-import { Json } from "../../util/Json";
+import { db } from "../../db/db";
 import { MessageFilter } from "./Filter";
 
 export class DeleteWord {
-  private CurseWords: string[] = [];
   private adminRoleId = "723228470720856167";
   private modRoleId = "631240392779759628";
   private command = "#deleteword";
@@ -38,21 +37,9 @@ export class DeleteWord {
     });
   }
 
-  private DeleteWord(word: string) {
-    const file = JSON.parse(Json.Read("config.json").toString());
-
-    this.CurseWords = file.words;
-
-    this.CurseWords.map((val, index) => {
-      if (val == word) {
-        this.CurseWords.splice(index, 1);
-      }
-    });
+  private async DeleteWord(word: string) {
+    await db.blocklist.Remove(word);
 
     MessageFilter.filter.removeWords(word);
-
-    file.words = this.CurseWords;
-
-    Json.Write("config.json", JSON.stringify(file));
   }
 }

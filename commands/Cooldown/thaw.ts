@@ -1,15 +1,14 @@
 import discord from "discord.js";
-import { Json } from "../../util/Json";
+import { db } from "../../db/db";
 
 export class UnFreeze {
   private command = "#thaw";
-  private frozenUsers: string[] = [];
 
   private modRoleId = "631240392779759628";
   private adminRoleId = "723228470720856167";
 
   constructor(cli: discord.Client) {
-    cli.on("message", (message) => {
+    cli.on("message", async (message) => {
       if (!message.toString().includes(this.command)) return;
 
       const content = message.content;
@@ -21,6 +20,8 @@ export class UnFreeze {
 
       if (authorRoles == null) return message.reply("You Don't have any roles");
 
+      if (content.includes("#help")) return;
+
       for (var i = 0; i != authorRoles.array().length; i++) {
         const role = authorRoles.array()[i];
         const id = role.id;
@@ -30,17 +31,7 @@ export class UnFreeze {
           id == this.modRoleId ||
           id == "681326153969172529"
         ) {
-          const file = JSON.parse(Json.Read("config.json").toString());
-
-          file.frozenUsers = this.frozenUsers;
-
-          const index = this.frozenUsers.indexOf(user);
-
-          this.frozenUsers.slice(index);
-
-          file.frozenUsers = this.frozenUsers;
-
-          Json.Write("config.json", JSON.stringify(file));
+          await db.freeze.Remove(user);
 
           return message.reply(`${user} was unfrozen.`);
         }

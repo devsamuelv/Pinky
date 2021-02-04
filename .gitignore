@@ -4,3 +4,4 @@ build/
 .env
 
 config.json
+google_key.json

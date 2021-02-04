@@ -1,0 +1,3 @@
+type IBlockedWord = {
+  word: string;
+};

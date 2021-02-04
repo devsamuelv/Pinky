@@ -1,15 +1,14 @@
 import discord from "discord.js";
-import { Json } from "../../util/Json";
+import { db } from "../../db/db";
 
 export class Blocklist {
   private command = "#blocklist";
-  private wordlist: string[] = [];
 
   private modRoleId = "631240392779759628";
   private adminRoleId = "723228470720856167";
 
   constructor(cli: discord.Client) {
-    cli.on("message", (message) => {
+    cli.on("message", async (message) => {
       if (!message.toString().includes(this.command)) return;
 
       const authorRoles = message.member?.roles.cache;
@@ -20,15 +19,17 @@ export class Blocklist {
         const role = authorRoles.array()[i];
         const id = role.id;
 
-        if (id == this.adminRoleId || id == this.modRoleId) {
-          const file = JSON.parse(Json.Read("config.json").toString());
-
-          this.wordlist = file.words;
+        if (
+          id == this.adminRoleId ||
+          id == this.modRoleId ||
+          id == "681326153969172529"
+        ) {
+          const blocklist = await db.blocklist.Get();
 
           return message.reply(
             " ```\n# Blocklist\n " +
-              this.wordlist.map((word) => {
-                return `\n${word}`;
+              blocklist.map((word) => {
+                return `\n${word.word}`;
               }) +
               " \n``` "
           );

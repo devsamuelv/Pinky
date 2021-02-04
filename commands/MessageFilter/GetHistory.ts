@@ -1,13 +1,12 @@
 import discord from "discord.js";
-import { Json } from "../../util/Json";
+import { db } from "../../db/db";
 
 export class GetHistory {
-  private history: { username: string; word: string }[] = [];
   private adminRoleId = "723228470720856167";
   private command = "#gethistory";
 
   constructor(cli: discord.Client) {
-    cli.on("message", (message) => {
+    cli.on("message", async (message) => {
       if (!message.toString().includes(this.command)) return;
 
       const content = message.content;
@@ -30,23 +29,15 @@ export class GetHistory {
       });
 
       if (isAdmin) {
-        const history = this.GetHistory(username);
-        message.reply(" ```json\n" + history + "\n``` ");
+        const history = await this.GetHistory(username);
+        message.reply(author + " History ```json\n" + history + "\n``` ");
       }
     });
   }
 
-  private GetHistory(username: string) {
-    this.history = [];
+  private async GetHistory(username: string) {
+    const history = await db.blocklist.History.Get(username);
 
-    const file = JSON.parse(Json.Read("config.json").toString());
-
-    file.users.map((user: { username: string; word: string }) => {
-      if (user.username == username) {
-        this.history.push(user);
-      }
-    });
-
-    return JSON.stringify(this.history);
+    return JSON.stringify(history);
   }
 }

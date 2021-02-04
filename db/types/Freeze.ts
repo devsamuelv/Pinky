@@ -1,0 +1,3 @@
+type IFrozenUser = {
+  username: string;
+};

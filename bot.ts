@@ -1,6 +1,7 @@
+import { PrismaClient } from "@prisma/client";
 import discord from "discord.js";
 import { Command } from "./commands/Command";
-import { Json } from "./util/Json";
+import { db } from "./db/db";
 
 require("dotenv").config();
 
@@ -14,16 +15,6 @@ const cli = new discord.Client({
     },
   },
 });
-
-if (!Json.Exists("config.json")) {
-  Json.Write(
-    "config.json",
-    JSON.stringify({
-      words: [],
-      users: [],
-    })
-  );
-}
 
 new Command(cli);
 

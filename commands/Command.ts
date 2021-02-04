@@ -8,6 +8,7 @@ import { DeleteWord } from "./MessageFilter/DeleteWord";
 import { MessageFilter } from "./MessageFilter/Filter";
 import { GetHistory } from "./MessageFilter/GetHistory";
 import { MessageHelp } from "./MessageFilter/Help";
+import { WipeChannel } from "./Wipe/Wipe";
 
 export class Command {
   constructor(cli: discord.Client) {
@@ -20,5 +21,6 @@ export class Command {
     new Blocklist(cli);
     new MessageFilter(cli);
     new MessageHelp(cli);
+    new WipeChannel(cli);
   }
 }

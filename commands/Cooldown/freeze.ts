@@ -1,4 +1,5 @@
 import discord from "discord.js";
+import { db } from "../../db/db";
 import { Json } from "../../util/Json";
 
 export class Freeze {
@@ -9,7 +10,7 @@ export class Freeze {
   private adminRoleId = "723228470720856167";
 
   constructor(cli: discord.Client) {
-    cli.on("message", (message) => {
+    cli.on("message", async (message) => {
       if (!message.toString().includes(this.command)) return;
 
       const content = message.content;
@@ -21,6 +22,8 @@ export class Freeze {
 
       if (authorRoles == null) return message.reply("You Don't have any roles");
 
+      if (content.includes("#help")) return;
+
       for (var i = 0; i != authorRoles.array().length; i++) {
         const role = authorRoles.array()[i];
         const id = role.id;
@@ -30,28 +33,16 @@ export class Freeze {
           id == this.modRoleId ||
           id == "681326153969172529"
         ) {
-          const file = JSON.parse(Json.Read("config.json").toString());
+          const frozenUsers = await db.freeze.Get();
 
-          if (file.frozenUsers == null) {
-            file.frozenUsers = [];
-
-            Json.Write("config.json", JSON.stringify(file));
-          }
-
-          this.frozenUsers = file.frozenUsers;
-
-          for (var i = 0; i != this.frozenUsers.length; i++) {
+          for (var i = 0; i != frozenUsers.length; i++) {
             const frUser = this.frozenUsers[i];
 
             if (user == frUser)
               return message.reply(`${user} is already frozen!`);
           }
 
-          this.frozenUsers.push(user);
-
-          file.frozenUsers = this.frozenUsers;
-
-          Json.Write("config.json", JSON.stringify(file));
+          await db.freeze.Add(user);
 
           return message.reply(`${user} is now frozen 🥶`);
         }

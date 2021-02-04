@@ -1,24 +1,18 @@
 import discord from "discord.js";
-import { Json } from "../../util/Json";
+import { db } from "../../db/db";
 
 export class CooldownFilter {
-  private frozenUsers: string[] = [];
+  private frozenUsers: IFrozenUser[] = [];
 
   constructor(cli: discord.Client) {
-    cli.on("message", (message) => {
+    cli.on("message", async (message) => {
       const author = message.author.username.toLowerCase();
-      const file = JSON.parse(Json.Read("config.json").toString());
+      const frozenUsers = await db.freeze.Get();
 
-      if (file.frozenUsers == null) {
-        file.frozenUsers = [];
-
-        Json.Write("config.json", JSON.stringify(file));
-      }
-
-      this.frozenUsers = file.frozenUsers;
+      this.frozenUsers = frozenUsers;
 
       for (var i = 0; i != this.frozenUsers.length; i++) {
-        const user = this.frozenUsers[i].toLowerCase();
+        const user = this.frozenUsers[i].username.toLowerCase();
 
         if (author == user) {
           if (!message.deletable) return;
