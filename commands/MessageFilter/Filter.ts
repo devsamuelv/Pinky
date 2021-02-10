@@ -103,6 +103,7 @@ export class MessageFilter {
     const list = await db.blocklist.Get();
 
     MessageFilter.filter.removeWords("crap");
+    MessageFilter.filter.removeWords("god");
 
     list.forEach((l) => MessageFilter.filter.addWords(l.word));
   }
