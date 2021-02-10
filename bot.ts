@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import discord from "discord.js";
 import { Command } from "./commands/Command";
-import { db } from "./db/db";
 
 require("dotenv").config();
 
@@ -15,6 +13,8 @@ const cli = new discord.Client({
     },
   },
 });
+
+cli.setMaxListeners(100);
 
 new Command(cli);
 
