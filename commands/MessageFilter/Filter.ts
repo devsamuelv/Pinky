@@ -1,4 +1,4 @@
-import discord from "discord.js";
+import discord, { Message } from "discord.js";
 import Filter from "bad-words";
 import { db } from "../../db/db";
 import { Tranlator } from "../../Translator/Translator";
@@ -61,9 +61,8 @@ export class MessageFilter {
       if (message.content == null || message.author == null) return;
 
       const author = message.author.username;
-      const content = await Tranlator.en.Translate(
-        message.content.toLowerCase()
-      );
+      const tr = await Tranlator.en.Translate(message.content.toLowerCase());
+      const content = tr.toLowerCase();
 
       const history = await db.blocklist.History.Get(author);
 
@@ -75,25 +74,6 @@ export class MessageFilter {
       if (content.includes("#deleteword")) return;
 
       // Added Nick Spam Protection
-
-      if (
-        (content.includes("<@!584580976928096257>") &&
-          content.includes("job")) ||
-        content.includes("nice") ||
-        content.includes("good") ||
-        content.includes("amazing") ||
-        content.includes("great") ||
-        content.includes("your") ||
-        content.includes("doing")
-      ) {
-        if (message.deletable) {
-          message.delete();
-
-          const channel = await message.author.createDM();
-
-          return channel.send("DON'T INTERRUPT NICK HE IS WORKING :rage: ");
-        }
-      }
 
       if (MessageFilter.filter.isProfane(content)) {
         history.forEach(() => count++);
@@ -117,6 +97,26 @@ export class MessageFilter {
         }
       }
     });
+  }
+
+  private async ProtectNick(content: string, message: Message) {
+    if (
+      (content.includes("<@!584580976928096257>") && content.includes("job")) ||
+      content.includes("nice") ||
+      content.includes("good") ||
+      content.includes("amazing") ||
+      content.includes("great") ||
+      content.includes("your") ||
+      content.includes("doing")
+    ) {
+      if (message.deletable) {
+        message.delete();
+
+        const channel = await message.author.createDM();
+
+        return channel.send("DON'T INTERRUPT NICK HE IS WORKING :rage: ");
+      }
+    }
   }
 
   private async Init() {
