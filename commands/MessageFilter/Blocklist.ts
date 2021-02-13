@@ -25,14 +25,16 @@ export class Blocklist {
           id == "681326153969172529"
         ) {
           const blocklist = await db.blocklist.Get();
+          var list = blocklist.map((word) => {
+            return `\n${word.word}`;
+          });
 
-          return message.reply(
-            " ```\n# Blocklist\n " +
-              blocklist.map((word) => {
-                return `\n${word.word}`;
-              }) +
-              " \n``` "
-          );
+          if (list.length == null || list.length == 0)
+            return message.reply(
+              "The Blocklist is Empty :disappointed_relieved:"
+            );
+
+          return message.reply(" ```\n# Blocklist\n " + list + " \n``` ");
         }
       }
 
