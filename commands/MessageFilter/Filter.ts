@@ -20,7 +20,6 @@ export class MessageFilter {
       const content = message.content.toLowerCase();
 
       const history = await db.blocklist.History.Get(author);
-
       var count: number = 0;
 
       if (author == "Pinky" || author == "Pinky Dev") return;
@@ -74,6 +73,27 @@ export class MessageFilter {
 
       if (content.includes("#addword")) return;
       if (content.includes("#deleteword")) return;
+
+      // Added Nick Spam Protection
+
+      if (
+        (content.includes("<@!584580976928096257>") &&
+          content.includes("job")) ||
+        content.includes("nice") ||
+        content.includes("good") ||
+        content.includes("amazing") ||
+        content.includes("great") ||
+        content.includes("your") ||
+        content.includes("doing")
+      ) {
+        if (message.deletable) {
+          message.delete();
+
+          const channel = await message.author.createDM();
+
+          return channel.send("DON'T INTERRUPT NICK HE IS WORKING :rage: ");
+        }
+      }
 
       if (MessageFilter.filter.isProfane(content)) {
         history.forEach(() => count++);
