@@ -11,7 +11,7 @@ export class AddWord {
     cli.on("message", async (message) => {
       if (!message.toString().includes(this.command)) return;
 
-      const content = message.content;
+      const content = message.content.toLowerCase();
       const pre = content.split(this.command)[1];
       const arg = pre.split(" ");
 
