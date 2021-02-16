@@ -4,7 +4,10 @@ import { db } from "../../db/db";
 import { Tranlator } from "../../Translator/Translator";
 
 export class MessageFilter {
-  public static filter = new Filter();
+  public static filter = new Filter({
+    regex: /\*|\.|$/gi,
+    replaceRegex: /[A-Za-z0-9가-힣_]/g,
+  });
   private curseCount: IHistoryEntry[] = [];
 
   private StopCussingVideo = "https://www.youtube.com/watch?v=D7JmlWbnMgc";
