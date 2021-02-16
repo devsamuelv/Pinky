@@ -7,6 +7,8 @@ export class MessageFilter {
   public static filter = new Filter();
   private curseCount: IHistoryEntry[] = [];
 
+  private StopCussingVideo = "https://www.youtube.com/watch?v=D7JmlWbnMgc";
+
   constructor(cli: discord.Client) {
     // * add proper data santization
     // * fixed the character issue
@@ -76,7 +78,11 @@ export class MessageFilter {
       if (MessageFilter.filter.isProfane(content)) {
         history.forEach(() => count++);
 
-        if (count > 10) {
+        if (count > 20) {
+          const dm = await message.author.createDM();
+
+          dm.send(this.StopCussingVideo);
+        } else if (count > 10) {
           const dm = await message.author.createDM();
 
           dm.send(
