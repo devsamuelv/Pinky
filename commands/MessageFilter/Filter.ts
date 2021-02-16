@@ -73,19 +73,19 @@ export class MessageFilter {
       if (content.includes("#addword")) return;
       if (content.includes("#deleteword")) return;
 
-      // Added Nick Spam Protection
-
       if (MessageFilter.filter.isProfane(content)) {
         history.forEach(() => count++);
 
         if (count > 10) {
-          message.reply(
+          const dm = await message.author.createDM();
+
+          dm.send(
             `you know im going to delete your messages anyway :rolling_eyes:`
           );
         } else if (count > 5) {
-          message.reply(
-            `HOW MANY TIMES DO I HAVE TO TELL YOU STOP CURSING!!!!!`
-          );
+          const dm = await message.author.createDM();
+
+          dm.send(`HOW MANY TIMES DO I HAVE TO TELL YOU STOP CURSING!!!!!`);
         } else if (count < 5) {
           message.reply(`stop cursing`);
         }
