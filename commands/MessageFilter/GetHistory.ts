@@ -56,7 +56,7 @@ export class GetHistory {
             const chunk = chunks[i];
 
             message.channel.send(
-              author + " History ```json\n" + chunk + "\n``` "
+              username + " History ```json\n" + chunk + "\n``` "
             );
           }
 
