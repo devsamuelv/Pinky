@@ -23,3 +23,11 @@ model History {
 model Blocklist {
   word String @unique
 }
+
+model Ignore {
+  channelId String @unique
+}
+
+model Watch {
+  UsernameAndTag String @unique
+}

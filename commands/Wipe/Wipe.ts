@@ -1,8 +1,8 @@
 import discord from "discord.js";
 
 export class WipeChannel {
-  private modRole = "";
-  private adminRole = "";
+  private modRole = "631240392779759628";
+  private adminRole = "723228470720856167";
   private command = "#wipe";
 
   constructor(cli: discord.Client) {
@@ -12,7 +12,7 @@ export class WipeChannel {
       const pre = message.content.split(this.command)[1];
       const arg = pre.split(" ");
 
-      const messageAmount = Number(arg[1]);
+      const messageAmount = Number(arg[1]) + 1;
 
       const author = message.author;
       const roles = message.member?.roles.cache;
@@ -32,7 +32,7 @@ export class WipeChannel {
 
           const messages = (await _channel.fetch()).array();
 
-          for (var i = messageAmount; i != -messages.length; i--) {
+          for (var i = 0; i != messageAmount; i++) {
             const msg = messages[i];
 
             if (msg == null) return;

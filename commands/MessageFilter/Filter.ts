@@ -21,20 +21,42 @@ export class MessageFilter {
     cli.on("messageUpdate", async (_, message) => {
       if (message.content == null || message.author == null) return;
 
-      const author = message.author.username;
-      const content = message.content.toLowerCase();
+      const channelId = message.channel.id;
+      const ignoredChannels = await db.ignore.Get();
 
-      const history = await db.blocklist.History.Get(author);
+      for (var i = 0; i != ignoredChannels.length; i++) {
+        const id = ignoredChannels[i].channelId;
+
+        if (channelId == id) return;
+      }
+
+      const author = message.author;
+      const username = author.username;
+      const tag = author.tag;
+      const watchedUsers = await db.watch.Get();
+      var content = message.content;
+
+      for (var i = 0; i != watchedUsers.length; i++) {
+        const user = watchedUsers[i];
+        const userAndTag = `${tag}`;
+
+        if (user.UsernameAndTag == userAndTag) {
+          content = await Tranlator.en.Translate(content);
+        }
+      }
+
+      const history = await db.blocklist.History.Get(username);
+
       var count: number = 0;
 
-      if (author == "Pinky" || author == "Pinky Dev") return;
+      if (username == "Pinky" || username == "Pinky Dev") return;
 
       if (content.includes("#addword")) return;
       if (content.includes("#deleteword")) return;
 
       if (MessageFilter.filter.isProfane(content)) {
         history.forEach((user) => {
-          if (user.username == author) {
+          if (user.username == username) {
             count++;
           }
         });
@@ -52,7 +74,7 @@ export class MessageFilter {
         }
 
         this.curseCount.push({
-          username: author,
+          username: username,
           message: content,
         });
 
@@ -65,21 +87,47 @@ export class MessageFilter {
     cli.on("message", async (message) => {
       if (message.content == null || message.author == null) return;
 
-      const author = message.author.username;
-      const tr = await Tranlator.en.Translate(message.content.toLowerCase());
-      const content = tr.toLowerCase();
+      const channelId = message.channel.id;
+      const ignoredChannels = await db.ignore.Get();
 
-      const history = await db.blocklist.History.Get(author);
+      for (var i = 0; i != ignoredChannels.length; i++) {
+        const id = ignoredChannels[i].channelId;
+
+        if (channelId == id) return;
+      }
+
+      const author = message.author;
+      const username = author.username;
+      const tag = author.tag;
+      const watchedUsers = await db.watch.Get();
+      var content = message.content;
+
+      for (var i = 0; i != watchedUsers.length; i++) {
+        const user = watchedUsers[i];
+        const userAndTag = `${tag}`;
+
+        console.log(userAndTag, watchedUsers);
+
+        if (user.UsernameAndTag == userAndTag) {
+          content = await Tranlator.en.Translate(content);
+        }
+      }
+
+      const history = await db.blocklist.History.Get(username);
 
       var count: number = 0;
 
-      if (author == "Pinky" || author == "Pinky Dev") return;
+      if (username == "Pinky" || username == "Pinky Dev") return;
 
       if (content.includes("#addword")) return;
       if (content.includes("#deleteword")) return;
 
       if (MessageFilter.filter.isProfane(content)) {
-        history.forEach(() => count++);
+        history.forEach((user) => {
+          if (user.username == username) {
+            count++;
+          }
+        });
 
         if (count > 20) {
           const dm = await message.author.createDM();
@@ -99,7 +147,10 @@ export class MessageFilter {
           message.reply(`stop cursing`);
         }
 
-        await db.blocklist.History.Add(content, author);
+        this.curseCount.push({
+          username: username,
+          message: content,
+        });
 
         if (message.deletable) {
           message.delete();
@@ -133,6 +184,7 @@ export class MessageFilter {
 
     MessageFilter.filter.removeWords("crap");
     MessageFilter.filter.removeWords("god");
+    MessageFilter.filter.removeWords("screw");
 
     list.forEach((l) => MessageFilter.filter.addWords(l.word));
   }
