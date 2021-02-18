@@ -6,4 +6,7 @@ build/
 config.json
 google_key.json
 
-prisma/migrations
+prisma/migrations/
+migrations/
+
+yarn.lock
