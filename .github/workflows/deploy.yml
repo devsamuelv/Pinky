@@ -34,4 +34,4 @@ jobs:
           envkey_POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           envkey_POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
           file_name: .env
-      - run: docker-compose up -d
+      - run: docker-compose up -d --force-recreate
