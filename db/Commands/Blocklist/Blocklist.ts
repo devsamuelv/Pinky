@@ -26,6 +26,18 @@ class History {
         },
       });
 
+      const keys = Object.keys(docs);
+
+      for (var i = 0; i != docs.length; i++) {
+        const doc: any = docs[i];
+
+        keys.map(() => {
+          if (doc.id) {
+            delete doc.id;
+          }
+        });
+      }
+
       resolve(docs);
     });
 }
