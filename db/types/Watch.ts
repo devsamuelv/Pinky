@@ -1,3 +1,3 @@
 export type IWatch = {
-  UsernameAndTag: string;
+  id: string;
 };

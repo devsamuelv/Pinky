@@ -29,5 +29,5 @@ model Ignore {
 }
 
 model Watch {
-  UsernameAndTag String @unique
+  id String @unique
 }
