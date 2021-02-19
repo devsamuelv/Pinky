@@ -12,6 +12,7 @@ jobs:
 
     steps:
       # if docker-compose up fails comment this then when it passes uncomment
+      - run: echo ${{ secrets.PASSWORD }} | sudo -S mkdir -p /home/deploy/actions-runner/working-dir/Pinky/Pinky/build
       - run: echo ${{ secrets.PASSWORD }} | sudo -S chgrp -R samuel /home/deploy/actions-runner/working-dir/Pinky/Pinky | echo ${{ secrets.PASSWORD }} | sudo -S chmod -R ug+rwX /home/deploy/actions-runner/working-dir/Pinky/Pinky | echo ${{ secrets.PASSWORD }} | sudo -S find /home/deploy/actions-runner/working-dir/Pinky/Pinky -type d -exec chmod g+s {} +
       - uses: actions/checkout@v2
       - uses: SpicyPizza/create-envfile@v1

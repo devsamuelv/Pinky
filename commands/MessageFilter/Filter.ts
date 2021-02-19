@@ -185,6 +185,7 @@ export class MessageFilter {
     MessageFilter.filter.removeWords("crap");
     MessageFilter.filter.removeWords("god");
     MessageFilter.filter.removeWords("screw");
+    MessageFilter.filter.removeWords("butt");
 
     list.forEach((l) => MessageFilter.filter.addWords(l.word));
   }
