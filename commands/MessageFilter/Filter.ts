@@ -32,15 +32,14 @@ export class MessageFilter {
 
       const author = message.author;
       const username = author.username;
-      const tag = author.tag;
       const watchedUsers = await db.watch.Get();
       var content = message.content;
 
       for (var i = 0; i != watchedUsers.length; i++) {
         const user = watchedUsers[i];
-        const userAndTag = `${tag}`;
+        const uid = author.id;
 
-        if (user.UsernameAndTag == userAndTag) {
+        if (user.id == uid) {
           content = await Tranlator.en.Translate(content);
         }
       }
@@ -98,17 +97,14 @@ export class MessageFilter {
 
       const author = message.author;
       const username = author.username;
-      const tag = author.tag;
       const watchedUsers = await db.watch.Get();
       var content = message.content;
 
       for (var i = 0; i != watchedUsers.length; i++) {
         const user = watchedUsers[i];
-        const userAndTag = `${tag}`;
+        const uid = author.id;
 
-        console.log(userAndTag, watchedUsers);
-
-        if (user.UsernameAndTag == userAndTag) {
+        if (user.id == uid) {
           content = await Tranlator.en.Translate(content);
         }
       }

@@ -1,8 +1,8 @@
 import { Client } from "discord.js";
 import { db } from "../../db/db";
 
-export class Watch {
-  private command = "#watch";
+export class UnWatch {
+  private command = "#unwatch";
   private modRoleId = "631240392779759628";
   private adminRoleId = "723228470720856167";
 
@@ -25,7 +25,7 @@ export class Watch {
           id == this.modRoleId ||
           id == "681326153969172529"
         ) {
-          await db.watch.Add(uid);
+          await db.watch.Remove(uid);
 
           return message.reply(`${username} is now being watched :telescope:`);
         }

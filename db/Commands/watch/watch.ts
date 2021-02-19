@@ -2,21 +2,21 @@ import { db } from "../../db";
 import { IWatch } from "../../types/Watch";
 
 export class watch {
-  public Add = (tag: string) =>
+  public Add = (id: string) =>
     new Promise(async (resolve) => {
       const doc = await db.prisma.watch.create({
         data: {
-          UsernameAndTag: `${tag}`,
+          id: `${id}`,
         },
       });
       resolve(doc);
     });
 
-  public Remove = (tag: string) =>
+  public Remove = (id: string) =>
     new Promise(async (resolve) => {
       const doc = await db.prisma.watch.delete({
         where: {
-          UsernameAndTag: `${tag}`,
+          id: `${id}`,
         },
       });
       resolve(doc);
