@@ -7,16 +7,14 @@ export class Announcer {
 	constructor(cli: Client) {
 		const channel = cli.channels.cache.get(this.ChannelId);
 
-		// const job = new CronJob(
-		// 	"1 33 14 * * 5",
-		// 	() => {
-		// 		if (channel == null) return;
-
-		// 		cli.channels.cache.find;
-		// 	},
-		// 	null,
-		// 	true,
-		// 	"America/New_York"
-		// );
+		const job = new CronJob(
+			"1 33 14 * * 5",
+			() => {
+				if (channel == null) return;
+			},
+			null,
+			true,
+			"America/New_York"
+		);
 	}
 }

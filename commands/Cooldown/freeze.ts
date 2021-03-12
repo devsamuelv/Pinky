@@ -19,6 +19,7 @@ export class Freeze {
 
 			const user = arg[1];
 			const authorRoles = message.member?.roles.cache;
+			const usr = message.guild?.members.cache;
 
 			if (authorRoles == null) return message.reply("You Don't have any roles");
 
@@ -42,8 +43,23 @@ export class Freeze {
 							return message.reply(`${user} is already frozen!`);
 					}
 
-					if (user == "pinky" || user == "developer" || user == "crew") {
-						return message.reply("no");
+					if (usr != null) {
+						const usrRoles = usr
+							.find((u) => u.user.username == user)
+							?.roles.cache.array();
+
+						if (usrRoles != null) {
+							for (var i = 0; i != usrRoles.length; i++) {
+								const _role = usrRoles[i];
+
+								if (
+									_role.id == this.adminRoleId ||
+									_role.id == this.modRoleId
+								) {
+									return message.reply("no");
+								}
+							}
+						}
 					}
 
 					await db.freeze.Add(user);
