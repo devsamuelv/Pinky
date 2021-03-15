@@ -21,6 +21,8 @@ export class Freeze {
 			const authorRoles = message.member?.roles.cache;
 			const usr = message.guild?.members.cache;
 
+			if (message.author.username == "Pinky") return;
+
 			if (authorRoles == null) return message.reply("You Don't have any roles");
 
 			if (content.includes("#help")) return;
