@@ -12,7 +12,7 @@ export class Announcer {
 			() => {
 				if (channel == null) return;
 
-				channel.send();
+				// channel.send();
 			},
 			null,
 			true,
