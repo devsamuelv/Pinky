@@ -33,7 +33,7 @@ services:
     networks:
       workernet:
         ipv4_address: 10.3.0.5
-    restart: "always"
+    restart: always
     depends_on:
       - db
     volumes:
