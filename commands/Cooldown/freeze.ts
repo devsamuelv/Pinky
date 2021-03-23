@@ -1,6 +1,5 @@
 import discord from "discord.js";
 import { db } from "../../db/db";
-import { Json } from "../../util/Json";
 
 export class Freeze {
 	private command = "#freeze";
