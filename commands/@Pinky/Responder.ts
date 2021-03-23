@@ -3,6 +3,9 @@ import { Client } from "discord.js";
 export class Responder {
 	public responses: string[] = [
 		"?",
+		"https://tenor.com/view/anakin-liar-star-wars-lying-gif-8634649",
+		"I like how this was from 2012",
+		"https://cdn.discordapp.com/attachments/641649652965310476/820866606292402176/image0.jpg",
 		"who are you",
 		"why did you ping me",
 		"what do you need",
@@ -26,7 +29,7 @@ export class Responder {
 		"Silence is consent",
 		"it's ok!!! i got da weed card!",
 		"Look I got work tomorrow",
-		"@Crew#5037 unban Brooks from Rapport Realms immediatly",
+		"@Bradly unban Brooks from Rapport Realms immediatly",
 		"Listen up here buddy bucko buckaroo you are so completely incorrect it is almost foolish just to fathom just how wrong you are",
 	];
 
