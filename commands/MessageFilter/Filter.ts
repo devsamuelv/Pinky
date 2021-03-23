@@ -4,189 +4,189 @@ import { db } from "../../db/db";
 import { Tranlator } from "../../Translator/Translator";
 
 export class MessageFilter {
-  public static filter = new Filter({
-    regex: /\*|\.|$/gi,
-    replaceRegex: /[A-Za-z0-9가-힣_]/g,
-  });
-  private curseCount: IHistoryEntry[] = [];
+	public static filter = new Filter({
+		regex: /\*|\.|$/gi,
+		replaceRegex: /[A-Za-z0-9가-힣_]/g,
+	});
 
-  private StopCussingVideo = "https://www.youtube.com/watch?v=D7JmlWbnMgc";
+	private curseCount: IHistoryEntry[] = [];
+	private StopCussingVideo = "https://www.youtube.com/watch?v=D7JmlWbnMgc";
 
-  constructor(cli: discord.Client) {
-    // * add proper data santization
-    // * fixed the character issue
+	constructor(cli: discord.Client) {
+		// * add proper data santization
+		// * fixed the character issue
 
-    this.Init();
+		this.Init();
 
-    cli.on("messageUpdate", async (_, message) => {
-      if (message.content == null || message.author == null) return;
+		cli.on("messageUpdate", async (_, message) => {
+			if (message.content == null || message.author == null) return;
 
-      const channelId = message.channel.id;
-      const ignoredChannels = await db.ignore.Get();
+			const channelId = message.channel.id;
+			const ignoredChannels = await db.ignore.Get();
 
-      for (var i = 0; i != ignoredChannels.length; i++) {
-        const id = ignoredChannels[i].channelId;
+			for (var i = 0; i != ignoredChannels.length; i++) {
+				const id = ignoredChannels[i].channelId;
 
-        if (channelId == id) return;
-      }
+				if (channelId == id) return;
+			}
 
-      const author = message.author;
-      const username = author.username;
-      const tag = author.tag;
-      const watchedUsers = await db.watch.Get();
-      var content = message.content;
+			const author = message.author;
+			const username = author.username;
+			const tag = author.tag;
+			const watchedUsers = await db.watch.Get();
+			var content = message.content;
 
-      for (var i = 0; i != watchedUsers.length; i++) {
-        const user = watchedUsers[i];
-        const userAndTag = `${tag}`;
+			for (var i = 0; i != watchedUsers.length; i++) {
+				const user = watchedUsers[i];
+				const userAndTag = `${tag}`;
 
-        if (user.UsernameAndTag == userAndTag) {
-          content = await Tranlator.en.Translate(content);
-        }
-      }
+				if (user.UsernameAndTag == userAndTag) {
+					content = await Tranlator.en.Translate(content);
+				}
+			}
 
-      const history = await db.blocklist.History.Get(username);
+			const history = await db.blocklist.History.Get(username);
 
-      var count: number = 0;
+			var count: number = 0;
 
-      if (username == "Pinky" || username == "Pinky Dev") return;
+			if (username == "Pinky" || username == "Pinky Dev") return;
 
-      if (content.includes("#addword")) return;
-      if (content.includes("#deleteword")) return;
+			if (content.includes("#addword")) return;
+			if (content.includes("#deleteword")) return;
 
-      if (MessageFilter.filter.isProfane(content)) {
-        history.forEach((user) => {
-          if (user.username == username) {
-            count++;
-          }
-        });
+			if (MessageFilter.filter.isProfane(content)) {
+				history.forEach((user) => {
+					if (user.username == username) {
+						count++;
+					}
+				});
 
-        if (count > 10) {
-          message.reply(
-            `you know im going to delete your messages anyway :rolling_eyes:`
-          );
-        } else if (count > 5) {
-          message.reply(
-            `HOW MANY TIMES DO I HAVE TO TELL YOU STOP CURSING!!!!!`
-          );
-        } else if (count < 5) {
-          message.reply(`stop cursing`);
-        }
+				if (count > 10) {
+					message.reply(
+						`you know im going to delete your messages anyway :rolling_eyes:`
+					);
+				} else if (count > 5) {
+					message.reply(
+						`HOW MANY TIMES DO I HAVE TO TELL YOU STOP CURSING!!!!!`
+					);
+				} else if (count < 5) {
+					message.reply(`stop cursing`);
+				}
 
-        this.curseCount.push({
-          username: username,
-          message: content,
-        });
+				this.curseCount.push({
+					username: username,
+					message: content,
+				});
 
-        if (message.deletable) {
-          message.delete();
-        }
-      }
-    });
+				if (message.deletable) {
+					message.delete();
+				}
+			}
+		});
 
-    cli.on("message", async (message) => {
-      if (message.content == null || message.author == null) return;
+		cli.on("message", async (message) => {
+			if (message.content == null || message.author == null) return;
 
-      const channelId = message.channel.id;
-      const ignoredChannels = await db.ignore.Get();
+			const channelId = message.channel.id;
+			const ignoredChannels = await db.ignore.Get();
 
-      for (var i = 0; i != ignoredChannels.length; i++) {
-        const id = ignoredChannels[i].channelId;
+			for (var i = 0; i != ignoredChannels.length; i++) {
+				const id = ignoredChannels[i].channelId;
 
-        if (channelId == id) return;
-      }
+				if (channelId == id) return;
+			}
 
-      const author = message.author;
-      const username = author.username;
-      const tag = author.tag;
-      const watchedUsers = await db.watch.Get();
-      var content = message.content;
+			const author = message.author;
+			const username = author.username;
+			const tag = author.tag;
+			const watchedUsers = await db.watch.Get();
+			var content = message.content;
 
-      for (var i = 0; i != watchedUsers.length; i++) {
-        const user = watchedUsers[i];
-        const userAndTag = `${tag}`;
+			for (var i = 0; i != watchedUsers.length; i++) {
+				const user = watchedUsers[i];
+				const userAndTag = `${tag}`;
 
-        console.log(userAndTag, watchedUsers);
+				console.log(userAndTag, watchedUsers);
 
-        if (user.UsernameAndTag == userAndTag) {
-          content = await Tranlator.en.Translate(content);
-        }
-      }
+				if (user.UsernameAndTag == userAndTag) {
+					content = await Tranlator.en.Translate(content);
+				}
+			}
 
-      const history = await db.blocklist.History.Get(username);
+			const history = await db.blocklist.History.Get(username);
 
-      var count: number = 0;
+			var count: number = 0;
 
-      if (username == "Pinky" || username == "Pinky Dev") return;
+			if (username == "Pinky" || username == "Pinky Dev") return;
 
-      if (content.includes("#addword")) return;
-      if (content.includes("#deleteword")) return;
+			if (content.includes("#addword")) return;
+			if (content.includes("#deleteword")) return;
 
-      if (MessageFilter.filter.isProfane(content)) {
-        history.forEach((user) => {
-          if (user.username == username) {
-            count++;
-          }
-        });
+			if (MessageFilter.filter.isProfane(content)) {
+				history.forEach((user) => {
+					if (user.username == username) {
+						count++;
+					}
+				});
 
-        if (count > 20) {
-          const dm = await message.author.createDM();
+				if (count > 20) {
+					const dm = await message.author.createDM();
 
-          dm.send(this.StopCussingVideo);
-        } else if (count > 10) {
-          const dm = await message.author.createDM();
+					dm.send(this.StopCussingVideo);
+				} else if (count > 10) {
+					const dm = await message.author.createDM();
 
-          dm.send(
-            `you know im going to delete your messages anyway :rolling_eyes:`
-          );
-        } else if (count > 5) {
-          const dm = await message.author.createDM();
+					dm.send(
+						`you know im going to delete your messages anyway :rolling_eyes:`
+					);
+				} else if (count > 5) {
+					const dm = await message.author.createDM();
 
-          dm.send(`HOW MANY TIMES DO I HAVE TO TELL YOU STOP CURSING!!!!!`);
-        } else if (count < 5) {
-          message.reply(`stop cursing`);
-        }
+					dm.send(`HOW MANY TIMES DO I HAVE TO TELL YOU STOP CURSING!!!!!`);
+				} else if (count < 5) {
+					message.reply(`stop cursing`);
+				}
 
-        this.curseCount.push({
-          username: username,
-          message: content,
-        });
+				this.curseCount.push({
+					username: username,
+					message: content,
+				});
 
-        if (message.deletable) {
-          message.delete();
-        }
-      }
-    });
-  }
+				if (message.deletable) {
+					message.delete();
+				}
+			}
+		});
+	}
 
-  private async ProtectNick(content: string, message: Message) {
-    if (
-      (content.includes("<@!584580976928096257>") && content.includes("job")) ||
-      content.includes("nice") ||
-      content.includes("good") ||
-      content.includes("amazing") ||
-      content.includes("great") ||
-      content.includes("your") ||
-      content.includes("doing")
-    ) {
-      if (message.deletable) {
-        message.delete();
+	private async ProtectNick(content: string, message: Message) {
+		if (
+			(content.includes("<@!584580976928096257>") && content.includes("job")) ||
+			content.includes("nice") ||
+			content.includes("good") ||
+			content.includes("amazing") ||
+			content.includes("great") ||
+			content.includes("your") ||
+			content.includes("doing")
+		) {
+			if (message.deletable) {
+				message.delete();
 
-        const channel = await message.author.createDM();
+				const channel = await message.author.createDM();
 
-        return channel.send("DON'T INTERRUPT NICK HE IS WORKING :rage: ");
-      }
-    }
-  }
+				return channel.send("DON'T INTERRUPT NICK HE IS WORKING :rage: ");
+			}
+		}
+	}
 
-  private async Init() {
-    const list = await db.blocklist.Get();
+	private async Init() {
+		const list = await db.blocklist.Get();
 
-    MessageFilter.filter.removeWords("crap");
-    MessageFilter.filter.removeWords("god");
-    MessageFilter.filter.removeWords("screw");
-    MessageFilter.filter.removeWords("butt");
+		MessageFilter.filter.removeWords("crap");
+		MessageFilter.filter.removeWords("god");
+		MessageFilter.filter.removeWords("screw");
+		MessageFilter.filter.removeWords("butt");
 
-    list.forEach((l) => MessageFilter.filter.addWords(l.word));
-  }
+		list.forEach((l) => MessageFilter.filter.addWords(l.word));
+	}
 }
