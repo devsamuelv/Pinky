@@ -27,6 +27,7 @@ export class Responder {
 		"it's ok!!! i got da weed card!",
 		"Look I got work tomorrow",
 		"@Crew#5037 unban Brooks from Rapport Realms immediatly",
+		"Listen up here buddy bucko buckaroo you are so completely incorrect it is almost foolish just to fathom just how wrong you are",
 	];
 
 	constructor(cli: Client) {
