@@ -7,7 +7,7 @@ networks:
       driver: default
       config:
         - subnet: "12.3.0.0/24"
-          gateway: "12.3.0.1/16"
+          gateway: "12.3.0.1"
   default:
     driver: bridge
 
@@ -20,7 +20,7 @@ services:
     env_file: .env
     networks:
       workernet:
-        ipv4_address: 10.3.0.4
+        ipv4_address: 12.3.0.4
     volumes:
       - .:/usr/pinky/
 
@@ -32,7 +32,7 @@ services:
     image: node:erbium-alpine
     networks:
       workernet:
-        ipv4_address: 10.3.0.5
+        ipv4_address: 12.3.0.5
     restart: always
     depends_on:
       - db

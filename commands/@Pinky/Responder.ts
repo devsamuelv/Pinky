@@ -35,10 +35,9 @@ export class Responder {
 
 	constructor(cli: Client) {
 		cli.on("message", (message) => {
-			const author = message.author.username;
 			const members = message.mentions.members?.array()!;
 
-			console.log(author);
+			if (members == null) return;
 
 			for (var i = 0; i != members.length; i++) {
 				const member = members[i];
