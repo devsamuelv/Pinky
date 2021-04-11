@@ -1,5 +1,4 @@
 import { ChannelData, Client } from "discord.js";
-import { CronJob } from "cron";
 
 export class Announcer {
 	private ChannelId = "807268738684551209";
