@@ -1,22 +1,21 @@
-import discord, { Channel, Client, Guild, MessageMentions } from "discord.js";
-import { CronJob } from "cron";
+import { ChannelData, Client } from "discord.js";
 
 export class Announcer {
 	private ChannelId = "807268738684551209";
 
 	constructor(cli: Client) {
-		const channel: Channel = cli.channels.cache.get(this.ChannelId)!;
+		const channel = cli.channels.cache.get(this.ChannelId)! as ChannelData;
 
-		const job = new CronJob(
-			"1 33 14 * * 5",
-			() => {
-				if (channel == null) return;
+		// const job = new CronJob(
+		// 	"1 33 14 * * 5",
+		// 	() => {
+		// 		if (channel == null) return;
 
-				// channel.send();
-			},
-			null,
-			true,
-			"America/New_York"
-		);
+		// 		// channel.send();
+		// 	},
+		// 	null,
+		// 	true,
+		// 	"America/New_York"
+		// );
 	}
 }

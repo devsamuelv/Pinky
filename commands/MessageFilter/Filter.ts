@@ -8,8 +8,8 @@ export class MessageFilter {
 		regex: /\*|\.|$/gi,
 		replaceRegex: /[A-Za-z0-9가-힣_]/g,
 	});
-	private curseCount: IHistoryEntry[] = [];
 
+	private curseCount: IHistoryEntry[] = [];
 	private StopCussingVideo = "https://www.youtube.com/watch?v=D7JmlWbnMgc";
 
 	constructor(cli: discord.Client) {
@@ -53,12 +53,6 @@ export class MessageFilter {
 
 			if (content.includes("#addword")) return;
 			if (content.includes("#deleteword")) return;
-
-			if (content.includes("tenor.com")) {
-				if (message.deletable) {
-					return message.delete();
-				}
-			}
 
 			if (MessageFilter.filter.isProfane(content)) {
 				history.forEach((user) => {
@@ -112,8 +106,6 @@ export class MessageFilter {
 				const user = watchedUsers[i];
 				const userAndTag = `${tag}`;
 
-				console.log(userAndTag, watchedUsers);
-
 				if (user.UsernameAndTag == userAndTag) {
 					content = await Tranlator.en.Translate(content);
 				}
@@ -127,6 +119,12 @@ export class MessageFilter {
 
 			if (content.includes("#addword")) return;
 			if (content.includes("#deleteword")) return;
+
+			if (content.includes("tenor.com")) {
+				if (message.deletable) {
+					message.delete();
+				}
+			}
 
 			if (MessageFilter.filter.isProfane(content)) {
 				history.forEach((user) => {
