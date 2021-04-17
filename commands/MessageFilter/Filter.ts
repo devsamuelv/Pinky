@@ -120,12 +120,6 @@ export class MessageFilter {
 			if (content.includes("#addword")) return;
 			if (content.includes("#deleteword")) return;
 
-			if (content.includes("tenor.com")) {
-				if (message.deletable) {
-					message.delete();
-				}
-			}
-
 			if (MessageFilter.filter.isProfane(content)) {
 				history.forEach((user) => {
 					if (user.username == username) {
