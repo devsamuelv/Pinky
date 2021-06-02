@@ -31,6 +31,5 @@ export class Command {
 		new Remember(cli);
 		new Watch(cli);
 		new Responder(cli);
-		new RolesWatcher(cli);
 	}
 }
