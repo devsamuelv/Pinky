@@ -87,9 +87,9 @@ export class MessageFilter {
 		cli.on("message", async (message) => {
 			if (message.content == null || message.author == null) return;
 
-			// if (message.deletable) {
-			// 	return message.delete();
-			// }
+			if (message.deletable) {
+				return message.delete();
+			}
 
 			const channelId = message.channel.id;
 			const ignoredChannels = await db.ignore.Get();
