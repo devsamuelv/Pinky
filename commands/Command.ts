@@ -11,7 +11,6 @@ import { DeleteWord } from "./MessageFilter/DeleteWord";
 import { MessageFilter } from "./MessageFilter/Filter";
 import { GetHistory } from "./MessageFilter/GetHistory";
 import { MessageHelp } from "./MessageFilter/Help";
-import { RolesWatcher } from "./Roles/RoleWatcher";
 import { Watch } from "./Watch/Watch";
 import { WipeChannel } from "./Wipe/Wipe";
 
@@ -31,6 +30,5 @@ export class Command {
 		new Remember(cli);
 		new Watch(cli);
 		new Responder(cli);
-		new RolesWatcher(cli);
 	}
 }
