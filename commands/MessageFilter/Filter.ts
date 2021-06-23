@@ -2,6 +2,7 @@ import discord, { Message } from "discord.js";
 import Filter from "bad-words";
 import { db } from "../../db/db";
 import { Tranlator } from "../../Translator/Translator";
+import { Rec } from "../../db/types/List";
 
 export class MessageFilter {
 	public static filter = new Filter({
@@ -87,6 +88,8 @@ export class MessageFilter {
 		cli.on("message", async (message) => {
 			if (message.content == null || message.author == null) return;
 
+			this.CreateList(message);
+
 			const channelId = message.channel.id;
 			const ignoredChannels = await db.ignore.Get();
 
@@ -161,6 +164,22 @@ export class MessageFilter {
 				}
 			}
 		});
+	}
+
+	private CreateList(message: Message) {
+		const _author = message.author.username;
+		const _content = message.content;
+		const _id = message.id;
+		const _channel = message.channel.id;
+
+		const List: Rec = {
+			author: _author,
+			message: _content,
+			channelId: _channel,
+			id: _id,
+		};
+
+		db.list.Rec(List);
 	}
 
 	private async ProtectNick(content: string, message: Message) {

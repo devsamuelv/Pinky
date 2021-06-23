@@ -14,6 +14,14 @@ model Frozen {
   username String @unique
 }
 
+model List {
+  id        String    @unique
+  message   String
+  author    String
+  channelId String
+  timestamp DateTime? @default(now())
+}
+
 model History {
   id       String @id
   username String
