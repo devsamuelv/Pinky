@@ -53,7 +53,7 @@ export class Responder {
 
 	public SelectReponse(): string {
 		const index: number = Math.floor(
-			Math.random() * this.responses.length + Math.random()
+			Math.random() * (this.responses.length - 3) + Math.random()
 		);
 
 		return this.responses[index];
