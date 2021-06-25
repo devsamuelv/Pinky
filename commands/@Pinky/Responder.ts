@@ -3,13 +3,13 @@ import { Client } from "discord.js";
 export class Responder {
 	public responses: string[] = [
 		"?",
-		"https://tenor.com/view/anakin-liar-star-wars-lying-gif-8634649",
 		"I like how this was from 2012",
 		"https://cdn.discordapp.com/attachments/641649652965310476/820866606292402176/image0.jpg",
 		"who are you",
 		"why did you ping me",
 		"what do you need",
 		"did you know shane plane is a thing",
+		"https://tenor.com/view/anakin-liar-star-wars-lying-gif-8634649",
 		"There's a lot of Georgia in Chick-Fil-A",
 		"Do you have anything non dairy",
 		"I want to mate. - Calvin (apparently a 'Dr.Who' reference.)",
@@ -29,7 +29,6 @@ export class Responder {
 		"Silence is consent",
 		"it's ok!!! i got da weed card!",
 		"Look I got work tomorrow",
-		"@Bradly unban Brooks from Rapport Realms immediatly",
 		"Listen up here buddy bucko buckaroo you are so completely incorrect it is almost foolish just to fathom just how wrong you are",
 	];
 
@@ -54,7 +53,7 @@ export class Responder {
 
 	public SelectReponse(): string {
 		const index: number = Math.floor(
-			Math.random() * (this.responses.length - 0) + Math.random()
+			Math.random() * this.responses.length + Math.random()
 		);
 
 		return this.responses[index];
