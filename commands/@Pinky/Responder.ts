@@ -19,6 +19,7 @@ export class Responder {
 		"It's never too late to go back to bed.",
 		"If you torture data long enough, it will confess",
 		"If your car is still together by the end of the race it is too heavy",
+		"https://tenor.com/view/rick-astley-rick-roll-dancing-dance-moves-gif-14097983",
 		"If you see something which doesn't meet our standard of quality, and do nothing... you've just set the new standard",
 		"What might you do to accomplish your 10-year goals in the next 6 months, if you had a gun against your head?",
 		"I am Hawaii",
