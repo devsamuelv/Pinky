@@ -1,1 +1,1 @@
-kubectl expose deployment pinky-bot --type="LoadBalancer"
+kubectl expose Pod pinky-bot --type="LoadBalancer"
