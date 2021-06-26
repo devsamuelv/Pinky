@@ -119,6 +119,7 @@ export class MessageFilter {
 			var count: number = 0;
 
 			if (username == "Pinky" || username == "Pinky Dev") return;
+			if (author.id == "459517856154124289") return;
 
 			if (content.includes("#addword")) return;
 			if (content.includes("#deleteword")) return;
