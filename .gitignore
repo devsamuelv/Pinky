@@ -10,3 +10,5 @@ prisma/migrations/
 migrations/
 
 yarn.lock
+
+dev_deploy.sh
