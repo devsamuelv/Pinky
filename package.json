@@ -1,6 +1,6 @@
 {
-	"name": "Pinky",
-	"version": "1.0.0",
+	"name": "pinky",
+	"version": "1.0.1",
 	"description": "Pink Team Discord Bot",
 	"main": "build/bot.js",
 	"repository": "https://github.com/DevSamuelV/Pinky",
