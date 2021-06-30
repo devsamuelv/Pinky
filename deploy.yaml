@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pinky-bot-prod
+  labels:
+    app: discord-js
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: discord-js
+  template:
+    metadata:
+      labels:
+        app: discord-js
+    spec:
+      containers:
+      - name: discord-js
+        image: devsamuelv/pinky-bot:latest
+        resources:
+          limits:
+            cpu: "2"
+            memory: "2048"
+        ports:
+        - containerPort: 80
+      restartPolicy: Always
+    - env:
+      - name: DATABASE_HOST
+        value: postgres
+      - name: DATABASE_NAME
+        value: product
+      - name: DATABASE_PASSWORD
+        value: pr0dr0b0t
+      - name: DATABASE_USER
+        value: product_robot
+      - name: DATABASE_PORT
+        value: "5432"

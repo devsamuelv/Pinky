@@ -11,7 +11,7 @@
 		"tsc": "tsc -w",
 		"build": "tsc",
 		"dev": "nodemon",
-		"prod": "yarn install && yarn prisma:gen && yarn build && npx prisma db push --preview-feature && node build/bot.js",
+		"prod": "yarn prisma:gen && yarn build && npx prisma db push --preview-feature && node build/bot.js",
 		"prisma:deploy": "prisma migrate deploy --preview-feature",
 		"prisma:dev:migrate": "prisma migrate dev --preview-feature",
 		"prisma:help": "prisma help",
