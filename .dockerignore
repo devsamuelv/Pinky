@@ -1,0 +1,4 @@
+node_modules/
+.env
+.dockerignore
+expose.sh

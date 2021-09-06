@@ -2,7 +2,7 @@
 	"name": "pinky",
 	"version": "1.0.1",
 	"description": "Pink Team Discord Bot",
-	"main": "build/bot.js",
+	"main": "generated/bot.js",
 	"repository": "https://github.com/DevSamuelV/Pinky",
 	"author": "DevSamuelV",
 	"license": "MIT",
@@ -11,7 +11,7 @@
 		"tsc": "tsc -w",
 		"build": "tsc",
 		"dev": "nodemon",
-		"prod": "yarn install && yarn prisma:gen && yarn build && npx prisma db push --preview-feature && node build/bot.js",
+		"prod": "yarn install && yarn prisma:gen && yarn build && npx prisma db push --preview-feature && nodemon generated/bot.js",
 		"prisma:deploy": "prisma migrate deploy --preview-feature",
 		"prisma:dev:migrate": "prisma migrate dev --preview-feature",
 		"prisma:help": "prisma help",
@@ -21,7 +21,7 @@
 	},
 	"dependencies": {
 		"@google-cloud/translate": "^6.1.0",
-		"@prisma/client": "^2.17.0",
+		"@prisma/client": "^2.30.2",
 		"@types/bad-words": "^3.0.0",
 		"@types/cron": "^1.7.2",
 		"@types/uuid": "^8.3.0",
@@ -36,7 +36,7 @@
 		"@prisma/cli": "^2.15.0",
 		"@types/node": "^14.14.20",
 		"nodemon": "^2.0.7",
-		"prisma": "^2.17.0",
+		"prisma": "^2.30.2",
 		"typescript": "^4.1.3"
 	}
 }

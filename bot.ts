@@ -8,7 +8,7 @@ const token = process.env.TOKEN!;
 const cli = new discord.Client({
 	presence: {
 		activity: {
-			name: "The Server",
+			name: "The Pink Alliance",
 			type: "WATCHING",
 		},
 	},

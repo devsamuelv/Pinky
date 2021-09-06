@@ -2,8 +2,8 @@
 
 from os import system
 
-TAG: str = input("Version Tag: ")
+TAG = input("Version Tag: ")
 
-system("docker build -t devsamuelv/pinky-bot .")
-system("docker tag devsamuelv/pinky-bot devsamuelv/pinky-bot:"+TAG)
-system("docker push devsamuelv/pinky-bot:"+TAG)
+system("docker build -t devsamuelv/pinky .")
+system("docker tag devsamuelv/pinky devsamuelv/pinky:"+str(TAG))
+system("docker push devsamuelv/pinky:"+str(TAG))

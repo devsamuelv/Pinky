@@ -91,6 +91,6 @@ export class AddWord {
 	private async Addword(word: string) {
 		await db.blocklist.Add(word);
 
-		MessageFilter.filter.addWords(word);
+		// MessageFilter.filter.addWords(word);
 	}
 }

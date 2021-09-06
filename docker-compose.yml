@@ -12,17 +12,17 @@ networks:
     driver: bridge
 
 services:
-  db:
-    image: postgres
-    restart: always
-    ports:
-      - "5432:5432"
-    env_file: .env
-    networks:
-      workernet:
-        ipv4_address: 12.3.0.4
-    volumes:
-      - .:/usr/pinky/
+  # db:
+  #   image: postgres
+  #   restart: always
+  #   ports:
+  #     - "5432:5432"
+  #   env_file: .env
+  #   networks:
+  #     workernet:
+  #       ipv4_address: 12.3.0.4
+  #   volumes:
+  #     - .:/usr/pinky/
 
   bot:
     container_name: pinky
@@ -34,8 +34,8 @@ services:
       workernet:
         ipv4_address: 12.3.0.5
     restart: always
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     volumes:
       - .:/usr/pinky
       - /usr/pinky/node_modules

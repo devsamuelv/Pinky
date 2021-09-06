@@ -15,11 +15,8 @@ export class Responder {
 		"I want to mate. - Calvin (apparently a 'Dr.Who' reference.)",
 		"And that's why i'm NEVER joining the pink team - Bradley",
 		"you just shot the hoe",
-		"Hello big niggie - Laso Sam Halo 3 election",
-		"It's never too late to go back to bed.",
-		"If you torture data long enough, it will confess",
-		"If your car is still together by the end of the race it is too heavy",
 		"https://tenor.com/view/rick-astley-rick-roll-dancing-dance-moves-gif-14097983",
+		"It's never too late to go back to bed.",
 		"If you see something which doesn't meet our standard of quality, and do nothing... you've just set the new standard",
 		"What might you do to accomplish your 10-year goals in the next 6 months, if you had a gun against your head?",
 		"I am Hawaii",
@@ -28,9 +25,10 @@ export class Responder {
 		"holy frick shane did naughty to catvin?",
 		"SHANE IS ON A FURY ROAD!",
 		"Silence is consent",
-		"it's ok!!! i got da weed card!",
+		"shane's identity crisis is real",
 		"Look I got work tomorrow",
 		"Listen up here buddy bucko buckaroo you are so completely incorrect it is almost foolish just to fathom just how wrong you are",
+		"A doge is a doggo, but a doggo is not a doge!",
 	];
 
 	constructor(cli: Client) {

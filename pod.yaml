@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: pinky-bot
+  name: pinky
 spec:
   containers:
   - name: pinky
@@ -9,4 +9,4 @@ spec:
       limits:
         cpu: "1"
         memory: "2024"
-    image: devsamuelv/pinky-bot:latest
+    image: devsamuelv/pinky:latest

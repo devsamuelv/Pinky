@@ -10,12 +10,43 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// enum STATUS {
+//   ONLINE,
+//   OFFLINE,
+//   IDLE
+// }
+
+// enum PLATFORM {
+//   MOBILE,
+//   DESKTOP,
+// }
+
+model watch_event {
+  id            String @id
+  status        String
+  time_online   DateTime
+  // online_status STATUS
+  // platform_type PLATFORM
+}
+
 model Frozen {
-  username String @unique
+  username String @id
+}
+
+model User {
+  id          String @id
+  status      String
+  cuss_amount Int
+}
+
+model Cooldown {
+  id     String   @id
+  until  DateTime
+  reason String
 }
 
 model List {
-  id        String    @unique
+  id        String    @id
   message   String
   author    String
   channelId String
@@ -29,13 +60,13 @@ model History {
 }
 
 model Blocklist {
-  word String @unique
+  word String @id
 }
 
 model Ignore {
-  channelId String @unique
+  channelId String @id
 }
 
 model Watch {
-  UsernameAndTag String @unique
+  UsernameAndTag String @id
 }

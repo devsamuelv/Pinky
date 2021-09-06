@@ -40,6 +40,6 @@ export class DeleteWord {
 	private async DeleteWord(word: string) {
 		await db.blocklist.Remove(word);
 
-		MessageFilter.filter.removeWords(word);
+		// MessageFilter.filter.removeWords(word);
 	}
 }
