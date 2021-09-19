@@ -1,5 +1,6 @@
 import discord from "discord.js";
 import { Command } from "./commands/Command";
+import { Watchers } from "./watchers/watchers";
 
 require("dotenv").config();
 
@@ -17,6 +18,7 @@ const cli = new discord.Client({
 cli.setMaxListeners(100);
 
 new Command(cli);
+new Watchers(cli);
 
 if (token == null)
 	throw new Error("There is no available token in your enviroment");

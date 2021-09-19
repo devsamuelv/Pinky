@@ -5,8 +5,6 @@ import { Tranlator } from "../../Translator/Translator";
 import { Rec } from "../../db/types/List";
 
 export class MessageFilter {
-	private curseCount: IHistoryEntry[] = [];
-
 	constructor(cli: discord.Client) {
 		cli.on("messageUpdate", async (_, message) => {
 			if (message.content == null || message.author == null) return;

@@ -10,23 +10,27 @@ generator client {
   provider = "prisma-client-js"
 }
 
-// enum STATUS {
-//   ONLINE,
-//   OFFLINE,
-//   IDLE
-// }
+enum STATUS {
+  ONLINE
+  OFFLINE
+  INVISIBLE
+  IDLE
+  DND
+}
 
-// enum PLATFORM {
-//   MOBILE,
-//   DESKTOP,
-// }
+enum PLATFORM {
+  MOBILE
+  DESKTOP
+  WEB
+}
 
 model watch_event {
-  id            String @id
-  status        String
+  id            String   @id @default(uuid())
+  username      String
+  uid           String
   time_online   DateTime
-  // online_status STATUS
-  // platform_type PLATFORM
+  online_status STATUS
+  platform_type PLATFORM
 }
 
 model Frozen {
