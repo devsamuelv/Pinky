@@ -107,7 +107,7 @@ export class MessageFilter {
 			}
 
 			const history = await db.blocklist.History.Get(username);
-			const pastMessages = await db.list.Get(content);
+			// const pastMessages = await db.list.Get(content);
 
 			// Start: Rate Limter
 

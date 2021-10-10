@@ -14,6 +14,7 @@ export class Responder {
 		"Do you have anything non dairy",
 		"I want to mate. - Calvin (apparently a 'Dr.Who' reference.)",
 		"And that's why i'm NEVER joining the pink team - Bradley",
+		"seems I got some explaining to do :eyes:",
 		"you just shot the hoe",
 		"https://tenor.com/view/rick-astley-rick-roll-dancing-dance-moves-gif-14097983",
 		"It's never too late to go back to bed.",
